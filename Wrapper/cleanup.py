@@ -1,7 +1,11 @@
 import subprocess
 import os
 
-subprocess.run("python uninstall.py", check=True)
+import installUtil
+installUtil.verifyAndGoto()
+
+#subprocess.run("python uninstall.py", check=True)
+import uninstall
 
 files = [
 	"help.pyw",
@@ -10,10 +14,23 @@ files = [
 	"RobloxPlayerLauncher.ahk",
 	"RobloxPlayerBeta.ahk",
 	"Roblox.ico",
-	"Ahk2Exe\\"
+	"installUtil.py"
+]
+
+directories = [
+	"__pycache__",
+	"Ahk2Exe"
 ]
 
 for file in files:
-	subprocess.run("del \""+file+"\"", shell=True, stdout=None, stderr=None)
-print("Finished cleanup. Press any key to exit")
+	try:
+		subprocess.run("del \""+file+"\"", shell=True, stdout=None, stderr=None)
+	except:
+		None
+for directory in directories:
+	try:
+		subprocess.run("rmdir /q /s \""+directory+"\"", shell=True, stdout=None, stderr=None)
+	except:
+		None
+print("Finished cleanup. Press any key to exit.")
 os.system("pause>nul")
