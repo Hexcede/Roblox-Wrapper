@@ -29,4 +29,4 @@ The -a (aka --authenticationUrl) argument specifies the authentication url that 
 You can't change these or you'll be kicked since they are verified on join.
 
 ## What is the -t argument?
-The -t (aka --authenticationTicket) is how Roblox determines what account you're using. You used to be able to play as a guest by using an expired authentication ticket but this is no longer the case. Auth tickets will expire after roughly 30 seconds from my testing.
+The -t (aka --authenticationTicket) argument is how Roblox determines what account you're using. You used to be able to play as a guest by using an expired authentication ticket but this is no longer the case. Auth tickets will expire after roughly 30 seconds from my testing.
