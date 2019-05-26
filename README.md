@@ -8,6 +8,6 @@ All important items for the Roblox-Wrapper are under the Wrapper folder.
   5. Edit RobloxPlayerBeta.py or RobloxPlayerLauncher.py. These are what launch the real Roblox processes along with their arguments.
   5. You're done! Just hit play on a game and you're good to go!
 ## How to uninstall:
-  1. Run `python uninstall.py`
+  1. Run `python uninstall.py` OR skip to option 2
   2. Optionally run `python cleanup.py` to clear all of the wrapper files. WARNING: this also clears both ahk scripts!
   3. RobloxPlayerBeta.py and RobloxPlayerLauncher.py files will be preserved.
