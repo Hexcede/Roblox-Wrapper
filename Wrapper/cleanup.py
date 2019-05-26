@@ -14,7 +14,8 @@ files = [
 	"RobloxPlayerLauncher.ahk",
 	"RobloxPlayerBeta.ahk",
 	"Roblox.ico",
-	"installUtil.py"
+	"installUtil.py",
+	"cleanup.py"
 ]
 
 directories = [
