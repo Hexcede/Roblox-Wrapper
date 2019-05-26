@@ -17,7 +17,7 @@ NOTE: All important items for the Roblox-Wrapper are under the Wrapper folder. T
 ## What is help.pyw?
 Help.pyw opens the window for Roblox's argument list. These are player NOT launcher arguments.
 
-## Can I install this on Mac
+## Can I install this on Mac?
 No, you can't install this on Mac since it relies on AHK to compile the binaries to wrap Roblox.
 
 ## What can I use this for?
