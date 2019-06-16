@@ -41,3 +41,10 @@ You can't change these from their default locations or you'll be disconnected, h
 
 ## What is the -t argument?
 The -t (aka --authenticationTicket) argument is how Roblox determines what account you're using. When Roblox connects to a server it will use this temporary ticket to log you in.
+
+# Installing an old Roblox version
+  1. Locate the latest version folder (Will be located in %localappdata%\Roblox\Versions)
+  2. Open the folder
+  3. Delete everything inside of the folder (back it up if you want to)
+  4. Copy the contents of the Roblox version you want to install into the folder
+  5. Run the wrapper installer (you may want to use the -l option if you're using an older version of Roblox Player, studio installs will be unaffected)
