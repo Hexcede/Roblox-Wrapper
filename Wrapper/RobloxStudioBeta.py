@@ -1,4 +1,4 @@
-# A python file which launches Roblox! Specify your own code if you'd like and then run install.py!
+# A python file which launches Roblox Studio! Specify your own code if you'd like and then run install.py!
 
 import subprocess
 from subprocess import STDOUT, PIPE
