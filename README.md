@@ -1,17 +1,30 @@
-NOTE: All important items for the Roblox-Wrapper are under the Wrapper folder. The Ahk2Exe source code is not required.
-# Installation
+All important items for the Roblox-Wrapper are under the Wrapper folder.
+
+## What is this?
+Roblox Wrapper is a tool which wraps Roblox installations and prevents them from being removed.
+It also allows you to see the arguments Roblox is ran with and even modify them!
+Every wrapped Roblox executable will run a single python script which launches the real Roblox executables.
+
+Roblox Wrapper also includes support for old Roblox versions such as the 2016 player!
+Sadly it's not possible to join a real Roblox game using the 2016 client for various (probably obvious) reasons.
+
 ## How to install:
-  1. Clone this repository somewhere (it can be anywhere)
-  2. Install python 3.5+ if you haven't
-  3. Optionally manually extract to a specific version folder (it only works for RobloxPlayer as of now)
-  4. Cd into the Wrapper folder or the Roblox version folder you manually extracted to
-  5. Run `python install.py`
-  6. Edit RobloxPlayerBeta.py or RobloxPlayerLauncher.py. These are what launch the real Roblox processes along with their arguments.
-  5. You're done! Just hit play on a game and you're good to go!
+  1. Install python 3.5+ if you haven't
+  2. Optionally extract the wrapper to a specific version folder
+  3. Double click `command-window.cmd`
+  4. Run `python install.py` to install for Roblox Player (see command line arguments below for studio installs)
+  5. You're done! Just hit play on a game and you should see a command window pop up with all of the arguments Roblox was run with.
 ## How to uninstall:
-  1. Run `python uninstall.py` OR skip to step 2
-  2. Optionally run `python cleanup.py` to clear all of the wrapper files. WARNING: this also clears both ahk scripts!
-  3. RobloxPlayerBeta.py and RobloxPlayerLauncher.py files will be preserved.
+  1. Run `python uninstall.py`
+  2. Optionally add `-c` or `--cleanup` to completely uninstall (the installed Roblox version will look exactly the same as it did before installation)
+
+## Command line arguments
+### install.py
+`--studio` (`-s`) - Will install for studio.
+`--legacy` (`-l`) - Will install and enable legacyMode in the config. Can be used to run old clients like the 2016 client. Without this, old clients will show an error messaging saying something like `unrecognized launch option '--launchtime=1560551643876'`.
+### uninstall.py
+`--studio` (`-s`) - Will uninstall for studio.
+`--cleanup` (`-c`) - Will cleanup *all* wrapper files.
 
 # FAQ
 ## What is help.pyw?

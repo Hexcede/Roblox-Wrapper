@@ -1,23 +1,49 @@
 import subprocess
 import os
+import sys
+import shutil
 
 ahkPath = "\"Ahk2Exe\\Ahk2Exe.exe\""
+from config import config, apply, save
+apply(globals())
+
+studioMode = ("--studio" in sys.argv) or ("-s" in sys.argv) # Install to studio directory
+legacyMode = ("--legacy" in sys.argv) or ("-l" in sys.argv) # Enable legacy mode
+
+config["legacyMode"] = legacyMode
+save()
 
 import installUtil
-installUtil.verifyAndMerge()
+installUtil.setStudio(studioMode)
 
-mpress = "1" # Compress ahk files (0 for don't... Probably not necessary to disable)
-if (not os.path.isfile("RobloxPlayerBeta_.exe")) or (not os.path.isfile("RobloxPlayerLauncher_.exe")):
-	if (not os.path.isfile("RobloxPlayerBeta.exe")) or (not os.path.isfile("RobloxPlayerLauncher.exe")):
-		raise Exception("RobloxPlayerBeta.exe and RobloxPlayerLauncher.exe couldn't be located or your Roblox installation is corrupt.")
-	
-	subprocess.run("ren \"%cd%\\RobloxPlayerBeta.exe\" RobloxPlayerBeta_.exe", check=True, shell=True)
-	subprocess.run("ren \"%cd%\\RobloxPlayerLauncher.exe\" RobloxPlayerLauncher_.exe", check=True, shell=True)
+if installUtil.verifyAndMerge():
+	print("Merged wrapper with latest version folder: "+installUtil.getInstallLocation())
+
+if os.path.isdir("__pycache__"):
+	shutil.rmtree("__pycache__")
+	print("Updated python files")
+
+if compressWrapper:
+	compressWrapper = "1"
 else:
-	if os.path.isfile("RobloxPlayerBeta.exe"):
-		subprocess.run("attrib -r RobloxPlayerBeta.exe", check=True)
+	compressWrapper = "0"
 
-if os.path.isfile("RobloxPlayerBeta_.exe") and os.path.isfile("RobloxPlayerLauncher_.exe"):
-	subprocess.run(ahkPath+" /in RobloxPlayerBeta.ahk /icon Roblox.ico /mpress "+mpress)
-	subprocess.run(ahkPath+" /in RobloxPlayerLauncher.ahk /icon Roblox.ico /mpress "+mpress)
-	subprocess.run("attrib +r RobloxPlayerBeta.exe")
+wFiles = installUtil.getWrapperFiles()
+for i, fileName in enumerate(installUtil.getInstallFiles()):
+	wFileName = wFiles[i]
+	if os.path.isfile(fileName[:-4]+".py"):
+		if os.path.isfile(fileName):
+			print("Renaming executable: "+fileName+" > "+wFileName)
+			os.rename(fileName, wFileName)
+		
+		print("Generating wrapper executable: "+fileName+" compress="+str(compressWrapper))
+		subprocess.run("attrib -r "+fileName)
+		subprocess.run(ahkPath+" /in Wrapper.ahk /icon Roblox.ico /out "+fileName+" /mpress "+compressWrapper)
+		subprocess.run("attrib +r "+fileName)
+		if os.path.isfile(fileName):
+			print("Compiled!")
+		else:
+			raise Exception("Failed to compile!")
+	else:
+		print("Skipping "+fileName+" (no python wrapper file)")
+print("Install completed!")
