@@ -1,5 +1,3 @@
-All important items for the Roblox-Wrapper are under the Wrapper folder.
-
 ## What is this?
 Roblox Wrapper is a tool which wraps Roblox installations and prevents them from being removed.
 It also allows you to see the arguments Roblox is ran with and even modify them!
