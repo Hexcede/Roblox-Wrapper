@@ -12,7 +12,6 @@ apply(globals())
 sys.argv[0] = sys.argv[0][:-3]+".exe" # Use the script's name to find the target program
 
 # Argument manipulation:
-sys.argv.insert(1, "--fast") # Add the --fast argument
 try:
 	browserTrackingIndex = sys.argv.index("-b") # Get tracking id location
 	sys.argv.pop(browserTrackingIndex) # Remove -b
