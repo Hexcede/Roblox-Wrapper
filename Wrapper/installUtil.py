@@ -4,25 +4,25 @@ from subprocess import STDOUT, PIPE
 import os
 import sys
 from pathlib import Path
+import threading
 
 studioOverride = False
 
+def execProcess(argv):
+	subprocess.run(argv, stdout=PIPE, stderr=STDOUT)
+	
 def runner(argv):
-	subprocess.run("attrib -r "+argv[0])
-	os.rename(argv[0], argv[0]+".old") # Rename wrapper file
-	os.rename(argv[0][:-4]+"_.exe", argv[0]) # Rename real file to name of wrapper file
-	process = subprocess.Popen(argv, stdout=PIPE, stderr=STDOUT, universal_newlines=True) # Start the target program
-	os.rename(argv[0], argv[0][:-4]+"_.exe") # Rename real file to its original name
-	os.rename(argv[0]+".old", argv[0]) # Rename wrapper file to its original name
-	subprocess.run("attrib +r "+argv[0])
-	for stdout_line in iter(process.stdout.readline, ""): # Start reading stdout
-		sys.stdout.write(stdout_line) # Output to console
-		sys.stdout.flush() # Flush console
-	process.stdout.close() # Close stdout
+	if not os.path.isfile(argv[0]+".old"):
+		subprocess.run("attrib -r "+argv[0])
+		os.rename(argv[0], argv[0]+".old") # Rename wrapper file
+		os.rename(argv[0][:-4]+"_.exe", argv[0]) # Rename real file to name of wrapper file
+	threading.Thread(target=execProcess, args=(argv,)).start()
+	if os.path.isfile(argv[0]+".old"):
+		os.rename(argv[0], argv[0][:-4]+"_.exe")
+		os.rename(argv[0]+".old", argv[0])
+		subprocess.run("attrib +r "+argv[0])
 
 def setStudio(value=True):
-	if value:
-		print("Using studio settings")
 	global studioOverride
 	studioOverride = value
 
@@ -98,7 +98,7 @@ def getWrapperFiles(_includeExt=True, _allFiles=False):
 def verifyAndGoto(_installPath=None):
 	if not _installPath:
 		_installPath = getInstallLocation()
-	if (not isInVersionFolder()):
+	if not isInVersionFolder():
 		os.chdir(_installPath)
 		return _installPath
 	return False
