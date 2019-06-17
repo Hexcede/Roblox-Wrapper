@@ -32,7 +32,7 @@ Help.pyw opens the window for Roblox's argument list.
 No, you can't install this on Mac since it relies on AHK to compile the wrapper binaries.
 
 ## What can I use this for?
-You can install custom Roblox versions, or set custom arguments. By default the browser tracking id is removed from the launcher arguments/join script and --fast is added.
+You can install custom Roblox versions, or set custom arguments. By default the browser tracking id is removed from the launcher arguments/join script.
 
 ## What are the -j and -a arguments used for?
 The -j (aka --joinScriptUrl) argument specifies the url that Roblox uses to locate the server you want to join.
