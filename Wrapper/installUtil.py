@@ -10,6 +10,10 @@ studioOverride = False
 
 def execProcess(argv):
 	subprocess.run(argv, stdout=PIPE, stderr=STDOUT)
+	if os.path.isfile(argv[0]+".old"):
+		os.rename(argv[0], argv[0][:-4]+"_.exe")
+		os.rename(argv[0]+".old", argv[0])
+		subprocess.run("attrib +r "+argv[0])
 	
 def runner(argv):
 	if not os.path.isfile(argv[0]+".old"):
@@ -17,10 +21,6 @@ def runner(argv):
 		os.rename(argv[0], argv[0]+".old") # Rename wrapper file
 		os.rename(argv[0][:-4]+"_.exe", argv[0]) # Rename real file to name of wrapper file
 	threading.Thread(target=execProcess, args=(argv,)).start()
-	if os.path.isfile(argv[0]+".old"):
-		os.rename(argv[0], argv[0][:-4]+"_.exe")
-		os.rename(argv[0]+".old", argv[0])
-		subprocess.run("attrib +r "+argv[0])
 
 def setStudio(value=True):
 	global studioOverride
