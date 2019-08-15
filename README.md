@@ -7,7 +7,7 @@ Roblox Wrapper also includes support for old Roblox versions such as the 2016 pl
 Sadly it's not possible to join a real Roblox game using the 2016 client for various (probably obvious) reasons.
 
 ## How to install:
-  1. Install python 3.5+ if you haven't
+  1. Install python 3.5+ if you haven't (IMPORTANT: Older python versions will most likely not work. No error message will be displayed so if you're having trouble make sure `python --version` is 3.5 or greater)
   2. Optionally extract the wrapper to a specific version folder
   3. Double click `command-window.cmd` to open a command window in the wrapper directory.
   4. Run `python install.py` to install for Roblox Player (see command line arguments below for studio installs)
