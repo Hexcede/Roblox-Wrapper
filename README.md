@@ -8,7 +8,7 @@ Sadly it's not possible to join a real Roblox game using the 2016 client for var
 
 ## How to install:
   1. Install python 3.5+ if you haven't (IMPORTANT: Older python versions will most likely not work. No error message will be displayed so if you're having trouble make sure `python --version` is 3.5 or greater)
-  2. Optionally extract the wrapper to a specific version folder
+  2. Optionally extract the wrapper to a specific version folder (the one you want to install)
   3. Double click `command-window.cmd` to open a command window in the wrapper directory.
   4. Run `python install.py` to install for Roblox Player (see command line arguments below for studio installs)
   5. You're done! Just hit play on a game and you should see a command window pop up with all of the arguments Roblox was run with.
