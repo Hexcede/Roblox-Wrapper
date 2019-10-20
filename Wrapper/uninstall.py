@@ -24,7 +24,7 @@ for i, fileName in enumerate(installUtil.getInstallFiles(_allFiles=True)):
 	else:
 		print("Skipping "+fileName+" because "+wFileName+" doesn't exist")
 
-installerPaths = ["command-window.cmd", "Roblox.ico", "Ahk2Exe", "Wrapper.ahk", "help.pyw", "install.py", "config.py", "__pycache__", "installUtil.py", "uninstall.py"]
+installerPaths = ["command-window.cmd", "Icons", "Ahk2Exe", "Wrapper.ahk", "help.pyw", "install.py", "config.py", "__pycache__", "installUtil.py", "uninstall.py"]
 if cleanup:
 	if installUtil.isInVersionFolder():
 		doCleanup = input("Are you sure you want to cleanup *all* installed files? This includes your custom python files and the Wrapper.ahk file, so be sure to back them up if they contain important code! [Y/N]")

@@ -16,6 +16,9 @@ save()
 import installUtil
 installUtil.setStudio(studioMode)
 
+if installUtil.isStudio():
+	print("Using studio settings")
+
 if installUtil.verifyAndMerge():
 	print("Merged wrapper with latest version folder: "+installUtil.getInstallLocation())
 
@@ -38,7 +41,13 @@ for i, fileName in enumerate(installUtil.getInstallFiles()):
 		
 		print("Generating wrapper executable: "+fileName+" compress="+str(compressWrapper))
 		subprocess.run("attrib -r "+fileName)
-		subprocess.run(ahkPath+" /in Wrapper.ahk /icon Roblox.ico /out "+fileName+" /mpress "+compressWrapper)
+		iconName = "Roblox"
+		if installUtil.isStudio():
+			iconName = "Studio"+iconName
+		if config["legacyMode"]:
+			iconName = "Legacy"+iconName
+		print("Using icon: "+iconName)
+		subprocess.run(ahkPath+" /in Wrapper.ahk /icon \"Icons/"+iconName+".ico\" /out "+fileName+" /mpress "+compressWrapper)
 		subprocess.run("attrib +r "+fileName)
 		if os.path.isfile(fileName):
 			print("Compiled!")
